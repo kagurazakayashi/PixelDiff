@@ -15,18 +15,41 @@ import (
 	"os"
 )
 
+// rgbaTo8Bit converts 16-bit RGBA values (0-65535) to 8-bit (0-255).
+func rgbaTo8Bit(r, g, b uint32) (int, int, int) {
+	return int(r >> 8), int(g >> 8), int(b >> 8)
+}
+
+// colorDistance calculates the Euclidean distance between two RGB colors.
+func colorDistance(r1, g1, b1, r2, g2, b2 int) float64 {
+	return math.Sqrt(
+		math.Pow(float64(r1-r2), 2) +
+			math.Pow(float64(g1-g2), 2) +
+			math.Pow(float64(b1-b2), 2),
+	)
+}
+
+// maxColorDistance is the maximum possible Euclidean distance between two RGB colors.
+// √(255² + 255² + 255²) ≈ 441.67
+const maxColorDistance = 441.6729559300637
+
+// normalizedColorDiff returns the normalized difference (0.0 to 1.0) between two RGB colors.
+func normalizedColorDiff(r1, g1, b1, r2, g2, b2 int) float64 {
+	return colorDistance(r1, g1, b1, r2, g2, b2) / maxColorDistance
+}
+
 func main() {
 	// 定義命令列引數
-	imgPath := flag.String("path", "", "Image file path")
-	targetX := flag.Int("x", 0, "X")
-	targetY := flag.Int("y", 0, "Y")
-	targetR := flag.Int("r", 0, "R(0-255)")
-	targetG := flag.Int("g", 0, "G(0-255)")
-	targetB := flag.Int("b", 0, "B(0-255)")
+	imgPath := flag.String("i", "", "image file path")
+	targetX := flag.Int("x", 0, "target pixel X coordinate")
+	targetY := flag.Int("y", 0, "target pixel Y coordinate")
+	targetR := flag.Int("r", 0, "target R value (0-255)")
+	targetG := flag.Int("g", 0, "target G value (0-255)")
+	targetB := flag.Int("b", 0, "target B value (0-255)")
 	flag.Parse()
 
-	if *imgPath == "" {
-		fmt.Println("NO IMAGE: -path <path>")
+	if flag.NFlag() == 0 {
+		flag.Usage()
 		return
 	}
 
@@ -48,22 +71,10 @@ func main() {
 	// image.At 產生的 RGBA 是 16 位深 (0-65535)，需要右移 8 位轉回 0-255
 	c := img.At(*targetX, *targetY)
 	r, g, b, _ := c.RGBA()
-	currR, currG, currB := int(r>>8), int(g>>8), int(b>>8)
+	currR, currG, currB := rgbaTo8Bit(r, g, b)
 
-	// 計算歐幾里得距離
-	// 距離公式: √((r1-r2)² + (g1-g2)² + (b1-b2)²)
-	diff := math.Sqrt(
-		math.Pow(float64(currR-*targetR), 2) +
-			math.Pow(float64(currG-*targetG), 2) +
-			math.Pow(float64(currB-*targetB), 2),
-	)
-
-	// 標準化差異度 (最大可能距離為 √(255²+255²+255²) ≈ 441.67)
-	maxDiff := math.Sqrt(3 * math.Pow(255, 2))
-	diffval := diff / maxDiff
+	diffval := normalizedColorDiff(currR, currG, currB, *targetR, *targetG, *targetB)
 
 	// 輸出結果
-	// fmt.Printf("%d, %d, %d ?\n", *targetR, *targetG, *targetB)
-	// fmt.Printf("%d, %d = %d, %d, %d\n", *targetX, *targetY, currR, currG, currB)
 	fmt.Printf("%f", diffval)
 }
