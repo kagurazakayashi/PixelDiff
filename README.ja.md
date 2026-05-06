@@ -1,6 +1,6 @@
-![icon](ico/icon.ico)
-
 # [PixelDiff](https://github.com/kagurazakayashi/PixelDiff)
+
+[English](README.md) | [简体中文](README.zh-Hans.md) | [繁體中文](README.zh-Hant.md) | **日本語**
 
 `PixelDiff` は、画像内の指定した座標点の色値を検出し、対象の RGB 色との差異を定量的に計算する軽量なコマンドラインツールです。
 

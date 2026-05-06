@@ -5,12 +5,12 @@ if [ ! -f "test.png" ]; then
     mv "test-0.png" "test.png"
     rm -f test-*.png
 fi
-if [ -f "./PixelDiff" ]; then
-    rm -f ./PixelDiff
+if [ -f "./pixeldiff" ]; then
+    rm -f ./pixeldiff
 fi
 go build .
-chmod +x ./PixelDiff
-./PixelDiff -i "test.png" -x 100 -y 100 -r 255 -g 0 -b 0
-./PixelDiff -i "test.png" -x 100 -y 100 -r 0 -g 255 -b 0
-./PixelDiff -i "test.png" -x 100 -y 100 -r 0 -g 0 -b 255
-rm -f ./PixelDiff
+chmod +x ./pixeldiff
+./pixeldiff -i "test.png" -x 100 -y 100 -r 255 -g 0 -b 0
+./pixeldiff -i "test.png" -x 100 -y 100 -r 0 -g 255 -b 0
+./pixeldiff -i "test.png" -x 100 -y 100 -r 0 -g 0 -b 255
+rm -f ./pixeldiff

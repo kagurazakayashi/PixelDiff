@@ -1,6 +1,6 @@
-![icon](ico/icon.ico)
-
 # [PixelDiff](https://github.com/kagurazakayashi/PixelDiff)
+
+**English** | [简体中文](README.zh-Hans.md) | [繁體中文](README.zh-Hant.md) | [日本語](README.ja.md)
 
 `PixelDiff` is a lightweight command-line tool for detecting the color value of a specified pixel coordinate in an image and calculating the quantified difference between that color and a target RGB color.
 

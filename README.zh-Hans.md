@@ -1,6 +1,6 @@
-![icon](ico/icon.ico)
-
 # [PixelDiff](https://github.com/kagurazakayashi/PixelDiff)
+
+[English](README.md) | **简体中文** | [繁體中文](README.zh-Hant.md) | [日本語](README.ja.md)
 
 `PixelDiff` 是一个轻量级命令行工具，用于检测图片中指定坐标点的颜色值，并计算其与目标 RGB 颜色的量化差异度。
 
@@ -43,7 +43,7 @@ $$Distance = \sqrt{(R_1 - R_2)^2 + (G_1 - G_2)^2 + (B_1 - B_2)^2}$$
 
 ## 安装说明
 
-从 Release 下载使用即可。
+从 [Release](https://github.com/kagurazakayashi/PixelDiff/releases) 下载使用即可。
 
 ## 编译
 

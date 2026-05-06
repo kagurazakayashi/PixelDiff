@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export NAME="PixelDiff"
+export NAME="pixeldiff"
 export PNAME="PixelDiff"
 export VERSION="1.0.0"
 

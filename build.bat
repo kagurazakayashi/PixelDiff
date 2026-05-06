@@ -1,4 +1,4 @@
-SET NAME=PixelDiff
+SET NAME=pixeldiff
 SET PNAME=PixelDiff
 SET VERSION=1.0.0
 RD /S /Q bin
@@ -50,8 +50,6 @@ MD bin\%PNAME%_linux-x86
 go build -o bin\%PNAME%_linux-x86\%NAME%
 COPY *.md bin\%PNAME%_linux-x86\
 COPY ico\icon.png bin\%PNAME%_linux-x86\%NAME%.png
-COPY install.sh bin\%PNAME%_linux-x86\
-COPY uninstall.sh bin\%PNAME%_linux-x86\
 
 ECHO Compiling Linux x64
 SET GOARCH=amd64
@@ -59,8 +57,6 @@ MD bin\%PNAME%_linux-x64
 go build -o bin\%PNAME%_linux-x64\%NAME%
 COPY *.md bin\%PNAME%_linux-x64\
 COPY ico\icon.png bin\%PNAME%_linux-x64\%NAME%.png
-COPY install.sh bin\%PNAME%_linux-x64\
-COPY uninstall.sh bin\%PNAME%_linux-x64\
 
 ECHO Compiling Linux ARM32
 SET GOARCH=arm
@@ -68,8 +64,6 @@ MD bin\%PNAME%_linux-arm32
 go build -o bin\%PNAME%_linux-arm32\%NAME%
 COPY *.md bin\%PNAME%_linux-arm32\
 COPY ico\icon.png bin\%PNAME%_linux-arm32\%NAME%.png
-COPY install.sh bin\%PNAME%_linux-arm32\
-COPY uninstall.sh bin\%PNAME%_linux-arm32\
 
 ECHO Compiling Linux ARM64
 SET GOARCH=arm64
@@ -77,8 +71,6 @@ MD bin\%PNAME%_linux-arm64
 go build -o bin\%PNAME%_linux-arm64\%NAME%
 COPY *.md bin\%PNAME%_linux-arm64\
 COPY ico\icon.png bin\%PNAME%_linux-arm64\%NAME%.png
-COPY install.sh bin\%PNAME%_linux-arm64\
-COPY uninstall.sh bin\%PNAME%_linux-arm64\
 
 CD bin
 DEL *.md
