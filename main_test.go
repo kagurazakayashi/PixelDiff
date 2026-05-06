@@ -5,6 +5,7 @@ import (
 	"testing"
 )
 
+// TestRgbaTo8Bit 測試 16 位元 RGBA 值轉換為 8 位元的功能。
 func TestRgbaTo8Bit(t *testing.T) {
 	tests := []struct {
 		name     string
@@ -32,6 +33,7 @@ func TestRgbaTo8Bit(t *testing.T) {
 	}
 }
 
+// TestColorDistance 測試兩個 RGB 顏色之間歐幾里得距離的計算。
 func TestColorDistance(t *testing.T) {
 	tests := []struct {
 		name             string
@@ -61,6 +63,7 @@ func TestColorDistance(t *testing.T) {
 	}
 }
 
+// TestNormalizedColorDiff 測試標準化顏色差異的計算（範圍 0.0 到 1.0）。
 func TestNormalizedColorDiff(t *testing.T) {
 	tests := []struct {
 		name       string
@@ -86,6 +89,7 @@ func TestNormalizedColorDiff(t *testing.T) {
 	}
 }
 
+// TestNormalizedColorDiffRange 驗證標準化顏色差異結果始終在 [0, 1] 範圍內。
 func TestNormalizedColorDiffRange(t *testing.T) {
 	// Verify the result is always in [0, 1] for all 8-bit color pairs.
 	colors := []int{0, 64, 128, 192, 255}
@@ -109,6 +113,7 @@ func TestNormalizedColorDiffRange(t *testing.T) {
 	}
 }
 
+// TestColorDistanceSymmetry 驗證顏色距離計算的對稱性。
 func TestColorDistanceSymmetry(t *testing.T) {
 	// colorDistance should be symmetric.
 	cases := [][6]int{
@@ -127,6 +132,7 @@ func TestColorDistanceSymmetry(t *testing.T) {
 	}
 }
 
+// TestMaxColorDistanceConstant 驗證 maxColorDistance 常數值是否正確。
 func TestMaxColorDistanceConstant(t *testing.T) {
 	expected := math.Sqrt(3 * 255.0 * 255.0)
 	if math.Abs(maxColorDistance-expected) > 1e-9 {

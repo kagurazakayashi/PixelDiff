@@ -1,9 +1,7 @@
 bin
 sbin
 /PixelDiff
-PixelDiff.json
-/PixelDiff.png
-/PixelDiff.icns
+/test.png
 *.dmg
 *.syso
 readme

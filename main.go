@@ -15,12 +15,12 @@ import (
 	"os"
 )
 
-// rgbaTo8Bit converts 16-bit RGBA values (0-65535) to 8-bit (0-255).
+// rgbaTo8Bit 將 16 位元 RGBA 值 (0-65535) 轉換為 8 位元 (0-255)。
 func rgbaTo8Bit(r, g, b uint32) (int, int, int) {
 	return int(r >> 8), int(g >> 8), int(b >> 8)
 }
 
-// colorDistance calculates the Euclidean distance between two RGB colors.
+// colorDistance 計算兩個 RGB 顏色之間的歐幾里得距離。
 func colorDistance(r1, g1, b1, r2, g2, b2 int) float64 {
 	return math.Sqrt(
 		math.Pow(float64(r1-r2), 2) +
@@ -29,11 +29,11 @@ func colorDistance(r1, g1, b1, r2, g2, b2 int) float64 {
 	)
 }
 
-// maxColorDistance is the maximum possible Euclidean distance between two RGB colors.
+// maxColorDistance 是兩個 RGB 顏色之間的最大可能歐幾里得距離。
 // √(255² + 255² + 255²) ≈ 441.67
 const maxColorDistance = 441.6729559300637
 
-// normalizedColorDiff returns the normalized difference (0.0 to 1.0) between two RGB colors.
+// normalizedColorDiff 回傳兩個 RGB 顏色之間的標準化差異 (0.0 到 1.0)。
 func normalizedColorDiff(r1, g1, b1, r2, g2, b2 int) float64 {
 	return colorDistance(r1, g1, b1, r2, g2, b2) / maxColorDistance
 }
